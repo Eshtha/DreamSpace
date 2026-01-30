@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Space✨</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="doodle d1">✨</div>
+    <div class="doodle d2">☁️</div>
+    <div class="doodle d3">🌸</div>
+    <div class="doodle d4">🧸</div>
+
+    <div class="website-wrapper">
+        <header class="main-header">
+            <h1 class="aesthetic-title">My Space✨</h1>
+            <p class="tagline">Manifesting productivity & cute vibes.</p>
+        </header>
+
+        <main class="bento-grid">
+            <div class="grid-column">
+                <section class="glass-card mood-card">
+                    <h3>Current Vibe</h3>
+                    <div class="mood-container">
+                        <div class="mood-bubble" onclick="setMood('✨', 'Radiant')">✨</div>
+                        <div class="mood-bubble" onclick="setMood('🌸', 'Soft')">🌸</div>
+                        <div class="mood-bubble" onclick="setMood('☁️', 'Dreamy')">☁️</div>
+                        <div class="mood-bubble" onclick="setMood('💅', 'Slaying')">💅</div>
+                    </div>
+                    <p id="vibeStatus">Vibe: Chill</p>
+                </section>
+
+                <section class="glass-card task-card">
+                    <h3>Daily Quests ☁️</h3>
+                    <div class="kawaii-input-group">
+                        <input type="text" id="taskInput" placeholder="Write a new quest...">
+                        <button class="plus-btn" onclick="addTask()">+</button>
+                    </div>
+                    <ul id="taskList"></ul>
+                </section>
+            </div>
+
+            <div class="grid-column">
+                <section class="glass-card timer-card">
+                    <h3>Focus Mode ⏳</h3>
+                    <div class="timer-config">
+                        <input type="number" id="customMin" placeholder="25">
+                        <span class="unit">min</span>
+                        <button class="cute-set-btn" onclick="setCustomTimer()">Set</button>
+                    </div>
+                    <div class="timer-display" id="timer">25:00</div>
+                    <div class="timer-btns">
+                        <button class="glow-btn start" onclick="startTimer()">Start</button>
+                        <button class="glow-btn reset" onclick="resetTimer()">Reset</button>
+                    </div>
+                </section>
+
+                <section class="glass-card journal-card">
+                    <div class="journal-nav">
+                        <h3>Yapper Box 📝</h3>
+                        <button id="lockBtn" class="aesthetic-lock" onclick="toggleJournal()">
+                            <span id="lockIcon">🔓</span> <span id="lockText">Unlock</span>
+                        </button>
+                    </div>
+                    <div id="journalContent" class="hidden-content">
+                        <textarea id="journalInput" placeholder="Spill the tea, bestie..."></textarea>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="popupOverlay" class="overlay hidden">
+        <div class="celebration-card">
+            <h2>Time's Up! 🎀</h2>
+            <p>You did so good! Take a break.</p>
+            <button class="glow-btn" onclick="closePopup()">Yay! ✨</button>
+        </div>
+    </div>
+
+    <audio id="timerAudio" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
