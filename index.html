@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream Space✨</title>
+    <title>Dream Space ✨</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 </head>
@@ -14,8 +14,10 @@
     <div class="doodle d4">🧸</div>
 
     <div class="website-wrapper">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
         <header class="main-header">
-            <h1 class="aesthetic-title">Dream Space✨</h1>
+            <h1 class="aesthetic-title">Dream Space ✨</h1>
             <p class="tagline">Manifesting productivity & cute vibes.</p>
         </header>
 
@@ -35,7 +37,7 @@
                 <section class="glass-card task-card">
                     <h3>Daily Quests ☁️</h3>
                     <div class="kawaii-input-group">
-                        <input type="text" id="taskInput" placeholder="Write a new quest...">
+                        <input type="text" id="taskInput" placeholder="Write a new quest..." onkeydown="if(event.key === 'Enter') addTask()">
                         <button class="plus-btn" onclick="addTask()">+</button>
                     </div>
                     <ul id="taskList"></ul>
@@ -76,7 +78,7 @@
         <div class="celebration-card">
             <h2>Time's Up! 🎀</h2>
             <p>You did so good! Take a break.</p>
-            <button class="glow-btn" onclick="closePopup()">Yay!✨</button>
+            <button class="glow-btn" onclick="closePopup()">Yay! ✨</button>
         </div>
     </div>
 
