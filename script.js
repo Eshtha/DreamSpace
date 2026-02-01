@@ -71,7 +71,7 @@ function toggleJournal() {
         content.style.display = 'none';
         btn.innerHTML = '🔓 Unlock';
     } else {
-        if (prompt("Secret code:") === "pink") {
+        if (prompt("Secret code:") === "promise") {
             content.style.display = 'block';
             btn.innerHTML = '🔒 Lock';
         }
@@ -81,4 +81,5 @@ function toggleJournal() {
 function closePopup() {
     document.getElementById('popupOverlay').classList.add('hidden');
     document.getElementById('timerAudio').pause();
+
 }
