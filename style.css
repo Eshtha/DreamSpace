@@ -5,6 +5,7 @@
     --pink: #FFB6C1;
     --soft-white: rgba(255, 255, 255, 0.9);
     --text-main: #4B0082;
+    --text-muted: rgba(75, 0, 130, 0.7);
 }
 
 body {
@@ -14,15 +15,17 @@ body {
     color: var(--text-main);
     overflow-y: auto;
     transition: background 0.3s, color 0.3s;
+    line-height: 1.6;
 }
 
 /* --- DARK MODE OVERRIDES --- */
 body.dark-mode {
-    --bg: #261C2C;  /* Deep dark purple */
-    --lavender: #5C5470; /* Muted purple for borders */
-    --deep-p: #B19CD9; /* Lighter purple for accents */
-    --soft-white: rgba(40, 30, 50, 0.7); /* Darker glass effect */
-    --text-main: #E6E6FA; /* Light lavender text */
+    --bg: #261C2C;
+    --lavender: #5C5470;
+    --deep-p: #B19CD9;
+    --soft-white: rgba(40, 30, 50, 0.7);
+    --text-main: #E6E6FA;
+    --text-muted: rgba(230, 230, 250, 0.7);
 }
 
 body.dark-mode li {
@@ -36,74 +39,125 @@ body.dark-mode textarea {
     color: white;
 }
 
-/* Theme Toggle Button */
+/* --- UPDATED: Theme Toggle Button --- */
 .theme-toggle {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 2rem;
+    top: 25px;
+    right: 30px;
+    width: 55px; /* Fixed size */
+    height: 55px;
+    background: white; /* Solid background */
+    border: 2px solid var(--lavender);
+    border-radius: 50%; /* Circle shape */
+    font-size: 1.5rem;
     cursor: pointer;
     transition: 0.3s;
-    z-index: 10;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Shadow to pop */
 }
-.theme-toggle:hover { transform: scale(1.1) rotate(20deg); }
+
+/* Specific styling for the button in Dark Mode */
+body.dark-mode .theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--lavender);
+    color: white;
+}
+
+.theme-toggle:hover { 
+    transform: scale(1.1) rotate(20deg); 
+    border-color: var(--pink);
+    background: var(--lavender);
+}
 
 .website-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px 100px 20px;
+    padding: 60px 20px 100px 20px;
     min-height: 100vh;
     position: relative;
+    box-sizing: border-box; 
 }
 
-.main-header { text-align: center; margin-bottom: 40px; }
+.main-header { 
+    text-align: center; 
+    margin-bottom: 60px; 
+}
+
+/* Typography */
+.aesthetic-title {
+    font-size: 3.5rem; 
+    margin: 0;
+    letter-spacing: -1px; 
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+    font-weight: 500;
+}
 
 .bento-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 40px; 
     align-items: start;
 }
 
 .grid-column {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px; 
 }
 
 .glass-card {
     background: var(--soft-white);
     backdrop-filter: blur(10px);
     border-radius: 40px;
-    padding: 30px;
-    border: 2px solid rgba(255,255,255,0.2);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s;
+    padding: 40px; 
+    border: 2px solid rgba(255,255,255,0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s, transform 0.3s;
 }
 
-/* Mood Button Styling */
+.glass-card:hover {
+    transform: translateY(-5px);
+}
+
+h3 {
+    margin-top: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+/* Mood Buttons */
 .mood-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    gap: 20px; 
+    margin-top: 25px;
+    margin-bottom: 15px;
+    flex-wrap: wrap; 
 }
 
 .mood-bubble {
-    width: 50px;
-    height: 50px;
+    width: 60px; 
+    height: 60px;
     background: white;
     border: 2px solid var(--lavender);
-    border-radius: 50%;
+    border-radius: 20px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
@@ -113,133 +167,238 @@ body.dark-mode .mood-bubble {
 }
 
 .mood-bubble:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.05);
     background: var(--lavender);
     border-color: var(--pink);
 }
 
 #vibeStatus {
     text-align: center;
-    font-weight: bold;
-    margin-top: 10px;
+    font-weight: 600;
+    margin-top: 15px;
+    color: var(--text-muted);
 }
 
-/* Task List Styling */
+/* Task List */
 #taskList {
     padding: 0;
-    margin-top: 20px;
+    margin-top: 25px;
     max-height: 350px;
     overflow-y: auto;
 }
 
 li {
     background: white;
-    padding: 15px 20px;
-    border-radius: 20px;
-    margin-bottom: 12px;
+    padding: 18px 25px;
+    border-radius: 25px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     gap: 15px;
     border: 1px solid var(--lavender);
     animation: slideIn 0.3s ease-out;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
 
 @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-10px); }
-    to { opacity: 1; transform: translateX(0); }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .completed { opacity: 0.5; text-decoration: line-through; }
 
-/* Kawaii Input Group */
 .kawaii-input-group {
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 #taskInput {
     flex: 1;
-    padding: 12px 15px;
+    padding: 15px 25px;
     border: 2px solid var(--lavender);
-    border-radius: 25px;
+    border-radius: 30px;
     outline: none;
     font-family: inherit;
+    font-size: 1rem;
     transition: 0.3s;
+    background: rgba(255, 255, 255, 0.5);
+    min-width: 0; 
 }
 
-#taskInput:focus { border-color: var(--pink); }
+#taskInput:focus { 
+    border-color: var(--pink); 
+    background: white;
+    box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.2);
+}
 
 .plus-btn {
-    width: 45px;
-    height: 45px;
+    width: 54px;
+    height: 54px;
     background: var(--pink);
     color: white;
     border: none;
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(255, 182, 193, 0.4);
+    transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+    flex-shrink: 0; 
 }
 
 .plus-btn:hover {
     background: var(--deep-p);
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(1.1);
 }
 
-/* Timer Display */
-.timer-display { font-size: 5.5rem; text-align: center; color: var(--deep-p); margin: 20px 0; font-weight: 700; }
+/* Timer */
+.timer-display { 
+    font-size: 6rem;
+    text-align: center; 
+    color: var(--deep-p); 
+    margin: 30px 0; 
+    font-weight: 700; 
+    letter-spacing: -2px;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+}
 
 .cute-set-btn {
     background: var(--lavender);
     border: none;
-    padding: 8px 20px;
-    border-radius: 20px;
+    padding: 10px 25px;
+    border-radius: 25px;
     color: var(--text-main);
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 0.9rem;
 }
 body.dark-mode .cute-set-btn { color: white; }
 
-.cute-set-btn:hover { background: var(--pink); color: white; }
+.cute-set-btn:hover { background: var(--pink); color: white; transform: translateY(-2px); }
+
+.timer-config {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#customMin {
+    width: 60px;
+    padding: 8px;
+    border-radius: 15px;
+    border: 2px solid var(--lavender);
+    text-align: center;
+    font-family: inherit;
+    font-weight: bold;
+}
 
 .glow-btn {
-    padding: 12px 35px;
+    padding: 15px 45px;
     border-radius: 50px;
     border: none;
     background: var(--deep-p);
     color: white;
     font-weight: bold;
+    font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(147, 112, 219, 0.3);
+    box-shadow: 0 10px 20px rgba(147, 112, 219, 0.3);
+    letter-spacing: 1px;
 }
 
-.glow-btn:hover { transform: scale(1.05); background: var(--pink); }
+.glow-btn:hover { transform: translateY(-3px); background: var(--pink); box-shadow: 0 15px 25px rgba(255, 182, 193, 0.4); }
 
 .aesthetic-lock {
     background: var(--pink);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 10px 25px;
+    border-radius: 25px;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
 }
+.aesthetic-lock:hover { opacity: 0.9; transform: scale(1.05); }
 
-.hidden-content { display: none; margin-top: 15px; }
-textarea { width: 100%; height: 150px; border-radius: 20px; border: 2px solid var(--lavender); padding: 15px; resize: none; box-sizing: border-box; }
+.hidden-content { display: none; margin-top: 20px; }
+textarea { 
+    width: 100%; 
+    height: 180px; 
+    border-radius: 25px; 
+    border: 2px solid var(--lavender); 
+    padding: 20px; 
+    resize: none; 
+    box-sizing: border-box; 
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    background: rgba(255,255,255,0.5);
+}
+textarea:focus { border-color: var(--pink); background: white; outline: none; }
 
-.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-.celebration-card { background: white; padding: 40px; border-radius: 40px; text-align: center; border: 4px solid var(--pink); }
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px); }
+.celebration-card { background: white; padding: 50px; border-radius: 50px; text-align: center; border: 4px solid var(--pink); box-shadow: 0 20px 50px rgba(0,0,0,0.2); width: 80%; max-width: 400px; }
 body.dark-mode .celebration-card { background: #261C2C; color: white; border-color: var(--deep-p); }
 .hidden { display: none; }
 
 .doodle { position: fixed; font-size: 3rem; z-index: -1; opacity: 0.4; animation: float 8s infinite ease-in-out; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 .d1 { top: 5%; left: 5%; } .d2 { top: 10%; right: 5%; }
+
+/* --- RESPONSIVE / MOBILE STYLES --- */
+@media (max-width: 768px) {
+    .website-wrapper {
+        padding: 30px 20px;
+    }
+
+    .main-header {
+        margin-bottom: 30px;
+    }
+
+    .aesthetic-title {
+        font-size: 2.5rem; 
+    }
+
+    .theme-toggle {
+        top: 20px;
+        right: 20px;
+        width: 45px; /* Slightly smaller on mobile */
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+
+    .glass-card {
+        padding: 25px; 
+    }
+
+    .timer-display {
+        font-size: 4rem; 
+        margin: 20px 0;
+    }
+
+    .glow-btn {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+    }
+    
+    .mood-bubble {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .doodle {
+        opacity: 0.2; 
+    }
+}
